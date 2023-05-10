@@ -6,8 +6,8 @@ module calc
     end
     # 计算相对湿度 
     function relative_humidity(temp, dew_temp) # 单位为摄氏度 
-        es = 6.112 * exp(17.269 .*(temp + 273.16) ./ (temp - 35.86)) # 饱和水汽压力
-        e = 6.112 * exp(17.269 .*(dew_temp + 273.16) ./ (dew_temp - 35.86)) # 实际水汽压力
+        es = 6.11 * 10^((7.5 .* temp) ./ (237.3+ temp)) # 饱和水汽压力
+        e = 6.11 * 10^((7.5 .* dew_temp) ./ (237.3+ dew_temp)) # 实际水汽压力
         rh = e ./ es * 100 # 相对湿度
         return rh
     end    
