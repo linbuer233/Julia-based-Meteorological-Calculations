@@ -17,6 +17,6 @@ println(a)
 # 计算相对湿度
 
 temp=20
-dew_temp=15
+dew_temp=20
 
 println(calc.relative_humidity(temp,dew_temp))
