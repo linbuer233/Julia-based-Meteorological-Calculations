@@ -1,5 +1,4 @@
 module calc
-    #TODO:创建新的类型以便识别各种情况
     export e
     # 大气压强
     # https://latex.codecogs.com/svg.image?&space;P=P_0e^{-\frac{Mgh}{RT}}
