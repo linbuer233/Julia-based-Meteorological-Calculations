@@ -1,3 +1,10 @@
+##################################单位统一##################################
+
+
+
+
+
+################################添加运算方法################################
 import Base:/
 import Base:*
 import Base:-
@@ -13,6 +20,10 @@ include("./units.jl")
 
 /(x::Number, y::hPa)=per_hPa()
 /(x::g, y::kg)=g_per_kg()
+
+function +(x::Quantity,y::Quantity)
+    
+end   
 
 a=Quantity(1000,hPa())
 b=a/10
