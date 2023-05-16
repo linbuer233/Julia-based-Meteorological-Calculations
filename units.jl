@@ -8,30 +8,25 @@ module unitsconvert
     end
 end
 
-module units 
-    # export hPa
-    # export g,kg,g_kg
-    # export degC,K
-    mutable struct hPa 
-        v :: Number
-    end
-    # 质量单位
-    mutable struct g 
-        v :: Float64
-    end
-    mutable struct kg 
-        v :: Float64
-    end
-    mutable struct g_kg 
-        v::Float64
-    end
+abstract type Symbol end
+abstract type Unit <: Symbol end
 
-    # 温度 
-    mutable struct degC 
-        v :: Float64
-    end
-    mutable struct K
-        v::Float64
-    end
+struct hPa <: Unit end
+struct per_hPa <: Unit end
 
+# 质量
+struct g <: Unit end
+struct kg <: Unit end
+struct g_per_kg <: Unit end
+struct kg_per_kg <: Unit end
+
+
+# 温度
+struct degC <: Unit end
+struct K <: Unit end
+mutable struct Quantity{V<:Number, U<:Unit}
+        value::V
+        unit::U
 end
+a = Quantity(1.0, hPa())
+println(a::Quantity)

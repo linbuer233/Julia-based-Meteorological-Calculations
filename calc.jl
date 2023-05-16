@@ -1,17 +1,14 @@
-
-
 module calc
     include("./units.jl")
-    import .units
+    # import .units
     # include("./unitsconvert.jl")
     using .unitsconvert
-
     export e,q
     
     # 大气压强
     # https://latex.codecogs.com/svg.image?&space;P=P_0e^{-\frac{Mgh}{RT}}
     function atmospheric_pressure(P0::units.hPa, M, g, h, R, T::units.degC)
-        return P0.v .* exp(-M .* g .* h ./ (R .* (T.v+273.15)))
+        return P0.v .* exp(-M .* g .* h ./ (R .* ( T.v+273.15 )))
     end
     function atmospheric_pressure(P0::units.hPa, M, g, h, R, T::units.K)
         return P0.v .* exp(-M .* g .* h ./ (R .* T.v))
@@ -93,5 +90,4 @@ module calc
     function temp_v(temp::units.K,P::units.hPa) # q为(g/g)
         return (1 .+ 0.61 .* q(temp,P) ./1000) .* temp.v
     end
-    
 end
