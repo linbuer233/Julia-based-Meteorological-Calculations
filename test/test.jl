@@ -1,5 +1,5 @@
-include("./calc.jl")
-include("./units.jl")
+include("../src/calc.jl")
+include("../src/units.jl")
 # using .units
 using .calc
 import .calc.units as cunits
