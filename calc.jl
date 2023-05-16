@@ -3,7 +3,7 @@
 module calc
     include("./units.jl")
     import .units
-    include("./unitsconvert.jl")
+    # include("./unitsconvert.jl")
     using .unitsconvert
 
     export e,q
@@ -11,10 +11,10 @@ module calc
     # 大气压强
     # https://latex.codecogs.com/svg.image?&space;P=P_0e^{-\frac{Mgh}{RT}}
     function atmospheric_pressure(P0::units.hPa, M, g, h, R, T::units.degC)
-        return P0.v .* exp(-M.* g .* h ./(R .* (T.v+273.15)))
+        return P0.v .* exp(-M .* g .* h ./ (R .* (T.v+273.15)))
     end
     function atmospheric_pressure(P0::units.hPa, M, g, h, R, T::units.K)
-        return P0.v .* exp(-M.* g .* h ./(R .* T.v))
+        return P0.v .* exp(-M .* g .* h ./ (R .* T.v))
     end
 
     #############################湿度特征参量#############################

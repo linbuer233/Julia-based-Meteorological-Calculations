@@ -1,12 +1,21 @@
+module unitsconvert
+    export K2degC,degC2K
+
+    function K2degC(Tk)
+            return Tk.v-273.15
+    end
+    function degC2K(Tk)
+        return Tk.v+273.15
+    end
+end
+
 module units 
     # export hPa
     # export g,kg,g_kg
     # export degC,K
-
     mutable struct hPa 
-        v :: Float64
+        v :: Number
     end
-    
     # 质量单位
     mutable struct g 
         v :: Float64
