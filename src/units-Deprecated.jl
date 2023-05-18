@@ -8,6 +8,10 @@
 #     end
 # end
 
+########################################################################
+# TODO: 单位接下来考虑字符串
+########################################################################
+
 abstract type Symbol end
 abstract type Unit <: Symbol end
 abstract type Pressure <: Unit end
@@ -27,13 +31,15 @@ struct kg_per_kg <: Mass end
 
 # 温度
 struct degC <: Temperature end
+struct per_degC <: Temperature end
 struct K <: Temperature end
 
+struct hPa_per_degC <: Unit end
 
 # 类型定义
 mutable struct Quantity{V<:Number, U<:Unit}
-        value::V
-        unit::U
+    value::V
+    unit::U
 end
 
 a = Quantity(1.0, hPa())
