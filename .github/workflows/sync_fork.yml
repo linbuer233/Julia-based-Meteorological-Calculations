@@ -1,17 +1,21 @@
-# .github/workflows/sync.yml
-name: Sync Fork
-
-on:
-  push: # push 时触发, 主要是为了测试配置有没有问题
-  schedule:
-    - cron: '* */24 * * *' # 每3小时触发, 对于一些更新不那么频繁的项目可以设置为每天一次, 低碳一点
-jobs:
-  repo-sync:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: TG908/fork-sync@v1.6.3
-        with:
-          github_token: ${{ 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 }}
-          owner: linbuer233 # fork 的上游仓库 user
-          head: main # fork 的上游仓库 branch
-          base: main # 本地仓库 branch
+name: Fork Sync
+  # You may pin to the exact commit or the version.
+  # uses: tgymnich/fork-sync@0cc6ac48fd51415e7c34e5b8823021bc952a5f5f
+uses: tgymnich/fork-sync@v1.2.1
+  with:
+    # Owner of the forked repository
+    owner: Rewrite-it-in-Julia
+    # Token for the github API
+    github_token: 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
+    # Branch to track
+    head: main # optional, default is master
+    # Branch to keep updated
+    base: main # optional, default is master
+    # Merge method to use
+    merge_method: # optional, default is merge
+    # The title of the pull request
+    pr_title: # optional, default is Fork Sync
+    # The message in the pull request
+    pr_message: # optional
+    # ignore Exceptions
+    ignore_fail: # optional
