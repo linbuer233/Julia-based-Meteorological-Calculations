@@ -7,6 +7,7 @@ module calc
     include("./unitsconvert.jl")
     using Unitful
     export e,q
+    export relative_humidity
     # 大气压强
     # https://latex.codecogs.com/svg.image?&space;P=P_0e^{-\frac{Mgh}{RT}}
     function atmospheric_pressure(P0::Quantity, M::Quantity, g::Quantity, h::Quantity, R::Quantity, T::Quantity)
@@ -24,13 +25,6 @@ module calc
     end
     
     # 计算相对湿度 
-    function relative_humidity(temp::Quantity, dew_temp::Quantity) # 单位为摄氏度 
-        es = e(temp) # 饱和水汽压力
-        en = e(dew_temp) # 实际水汽压力
-        rh = en ./ es * 100 # 相对湿度
-        return rh
-    end
-    export  relative_humidity
     function relative_humidity(temp::Quantity, dew_temp::Quantity) # 单位为摄氏度 
         es = e(temp) # 饱和水汽压力
         en = e(dew_temp) # 实际水汽压力
