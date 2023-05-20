@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: tgymnich/fork-sync@v1.8
         with:
-          token: ${{ secrets.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 }}
+          #token: ${{ secrets.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 }}
           owner: Rewrite-it-in-Julia
           base: main
           head: main
