@@ -18,7 +18,7 @@ println(typeof(T))
 a=calc.atmospheric_pressure(P0,M,g,h,R,T)
 println("ap\t",a)
 
-
+println("********************************")
 # 计算相对湿度
 
 temp=293u"K"
@@ -28,7 +28,13 @@ println("rh\t",calc.relative_humidity(temp,dew_temp))
 println("ah\t",calc.absolute_humidity(temp))
 println("q\t",calc.q(dew_temp,P))
 
+println("********************************")
 temp=20u"°C"
 println("theta\t",calc.theta(temp,P,P0))
 println("temp_v\t",calc.temp_v_from_q(temp,10.69u"g/kg"))
 println("temp_v\t",calc.temp_v(temp,P))
+
+P=850u"hPa"
+temp=20u"°C"
+dew_temp=18u"°C"
+println("theta_e\t",calc.theta_e(P,temp,dew_temp))

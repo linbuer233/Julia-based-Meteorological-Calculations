@@ -25,13 +25,12 @@ module calc
     
     # 计算相对湿度 
     function relative_humidity(temp::Quantity, dew_temp::Quantity) # 单位为摄氏度 
-        # temp=K2degC(temp)
-        # dew_temp=K2degC(dew_temp)
         es = e(temp) # 饱和水汽压力
         en = e(dew_temp) # 实际水汽压力
         rh = en ./ es * 100 # 相对湿度
         return rh
     end
+    export  relative_humidity
     function relative_humidity(temp::Quantity, dew_temp::Quantity) # 单位为摄氏度 
         es = e(temp) # 饱和水汽压力
         en = e(dew_temp) # 实际水汽压力
@@ -60,8 +59,16 @@ module calc
         return temp .* (P0 ./ P)^0.286 # K
     end
     # 相当位温
-    function theta_e(temp::Quantity)
-        
+    function theta_e(P::Quantity,temp::Quantity,dew_temp::Quantity)
+        P0=1013.25u"hPa"
+        temp=degC2K(temp)
+        dew_temp=degC2K(dew_temp)
+        RH=relative_humidity(temp,dew_temp)
+        Tlcl = 1 / ((1 / (temp - 56)) + log(temp/dew_temp)/800) + 56
+        r = 0.622*e(dew_temp).val/(P.val-e(dew_temp).val)*u"g/g"
+        T_theta=theta(temp,P,P0)
+        T_theta_DL=T_theta*(temp/Tlcl)^(0.286*r)
+        return T_theta_DL * exp((3036 / Tlcl - 1.78) * r * (1 + 0.448 * r))*u"K"
     end
     # 绝对虚温 
     function temp_v_from_q(temp::Quantity,q1::Quantity) # q为(g/g)
