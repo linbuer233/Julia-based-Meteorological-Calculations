@@ -59,6 +59,10 @@ module calc
         temp=degC2K(temp)
         return temp .* (P0 ./ P)^0.286 # K
     end
+    # 相当位温
+    function theta_e(temp::Quantity)
+        
+    end
     # 绝对虚温 
     function temp_v_from_q(temp::Quantity,q1::Quantity) # q为(g/g)
         temp=degC2K(temp)
@@ -70,4 +74,5 @@ module calc
         q1=uconvert(u"g/g",q(temp,P))
         return (1 .+ 0.61 .* q1) .* temp
     end
+
 end
