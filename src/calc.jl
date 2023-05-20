@@ -60,7 +60,7 @@ module calc
         return temp .* (P0 ./ P)^0.286 # K
     end
     # 相当位温
-    function theta_e()
+    function theta_e(temp::Quantity)
         
     end
     # 绝对虚温 
