@@ -75,5 +75,4 @@ module calc
         q1=uconvert(u"g/g",q(temp,P))
         return (1 .+ 0.61 .* q1) .* temp
     end
-
 end
